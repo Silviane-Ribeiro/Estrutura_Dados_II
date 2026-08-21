@@ -1,0 +1,115 @@
+# ============================================================
+# TÓPICO 8 - DESAFIO PRÁTICO: GESTÃO DE ESTOQUE
+# ============================================================
+
+# Lista que vai armazenar os produtos
+estoque = []
+
+# ============================================================
+# 1. CADASTRO DOS PRODUTOS
+# ============================================================
+
+while True:
+
+    print("\n===== CADASTRO DE PRODUTO =====")
+
+    nome = input("Digite o nome do produto: ")
+
+    preco = float(
+        input("Digite o preço do produto: ").replace(",", ".")
+    )
+
+    quantidade = int(
+        input("Digite a quantidade do produto: ")
+    )
+
+    # Cria o dicionário do produto
+    produto = {
+        "nome": nome,
+        "preco": preco,
+        "quantidade": quantidade
+    }
+
+    # Adiciona o produto na lista
+    estoque.append(produto)
+
+    print("\nProduto cadastrado com sucesso!")
+
+    # Pergunta se deseja continuar
+    continuar = input(
+        "\nDeseja cadastrar outro produto? (s/n): "
+    ).lower()
+
+    if continuar == "n":
+        break
+
+# ============================================================
+# 2. VERIFICAÇÃO DA QUANTIDADE DE PRODUTOS
+# ============================================================
+
+if len(estoque) < 5:
+
+    print("\nÉ necessário cadastrar pelo menos 5 produtos.")
+    print("Quantidade cadastrada:", len(estoque))
+
+else:
+
+# ========================================================
+# 3. INICIALIZAÇÃO DAS MÉTRICAS
+# ========================================================
+
+    valor_total_estoque = 0
+
+    produto_mais_caro = estoque[0]
+
+    produto_maior_volume = estoque[0]
+
+# ========================================================
+# 4. PROCESSAMENTO DO ESTOQUE
+# ========================================================
+
+    for produto in estoque:
+
+   # Calcula o valor financeiro do produto
+        subtotal = produto["preco"] * produto["quantidade"]
+
+   # Soma ao valor total
+        valor_total_estoque += subtotal
+
+   # Verifica o produto mais caro
+        if produto["preco"] > produto_mais_caro["preco"]:
+            produto_mais_caro = produto
+
+   # Verifica o produto com maior quantidade
+        if produto["quantidade"] > produto_maior_volume["quantidade"]:
+            produto_maior_volume = produto
+
+# ========================================================
+# 5. EXIBIÇÃO DOS RESULTADOS
+# ========================================================
+
+    print("\n==========================================")
+    print("          RELATÓRIO DO ESTOQUE")
+    print("============================================")
+
+    print(f"\nValor total do estoque: "
+          f"R$ {valor_total_estoque:.2f}")
+
+    print(f"\nProduto mais caro: "
+          f"{produto_mais_caro['nome']}")
+
+    print(f"Preço unitário: "
+          f"R$ {produto_mais_caro['preco']:.2f}")
+
+    print(f"\nProduto com maior volume: "
+          f"{produto_maior_volume['nome']}")
+
+    print(f"Quantidade: "
+          f"{produto_maior_volume['quantidade']} unidades")
+    
+    # A principal otimização foi reunir as três métricas em um único for.
+    # Na estrutura inicial, seria possível percorrer a lista separadamente para calcular o total,
+    # encontrar o produto mais caro e encontrar o produto com maior quantidade. Na versão refatorada, faço essas três operações durante o mesmo percurso da lista.
+    # A principal otimização foi reunir as três métricas em um único for. Na estrutura inicial,
+    # seria possível percorrer a lista separadamente para calcular o total, encontrar o produto mais caro e encontrar o produto com maior quantidade.
+    # Na versão refatorada, faço essas três operações durante o mesmo percurso da lista.
