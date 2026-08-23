@@ -1,0 +1,125 @@
+#Atividade 1
+# 1 e 2 - Criar a lista e solicitar 10 valores
+
+lista = []
+for i in range(10):
+    numero = int(input(f"Digite o {i + 1}º número: "))
+    lista.append(numero)
+
+# 3 - Exibir todos os números
+print("\nNúmeros digitados:")
+for numero in lista:
+    print(numero)
+
+# 4 - Calcular a soma
+soma = sum(lista)
+
+# 5 - Calcular a média
+media = soma / len(lista)
+
+# Desafio -Encontrar o maior e menor valor
+maior = max(lista)
+menor = min(lista)
+
+# Desafio - Encontrar a quantidade de números pares
+quantidade_pares = 0
+for numero in lista:
+ if numero % 2 == 0:
+  quantidade_pares += 1
+
+# Exibir resultados
+print("\nResultados:")
+print("Soma:", soma)
+print("Média:", media)
+print("Maior valor:", maior)
+print("Menor valor:", menor)
+print("Quantidade de números pares:", quantidade_pares)
+
+#Sobre sum(), max() e min():
+#São funções do Python que permitem obter diretamente a soma, o maior e o menor elemento da lista.
+
+
+# Atividade 2 - Matriz
+
+matriz = []
+
+# Criar a matriz 3x3 e solicitar os valores
+for i in range(3):
+    linha = []
+
+    for j in range(3):
+        numero = int(input(f"Digite o número da posição [{i}][{j}]: "))
+        linha.append(numero)
+    matriz.append(linha)
+
+# 1 - Exibir a matriz
+print("\nMatriz:")
+
+for linha in matriz:
+    print(linha)
+
+# 2 - Calcular a soma de todos os elementos
+soma = 0
+
+for linha in matriz:
+    soma += sum(linha)
+
+# 3 - Calcular a soma da diagonal principal
+soma_diagonal = 0
+
+for i in range(3):
+    soma_diagonal += matriz[i][i]
+
+# 4 - Encontrar o maior elemento
+maior = matriz[0][0]
+
+for linha in matriz:
+    if max(linha) > maior:
+        maior = max(linha)
+
+# Exibir os resultados
+print("\nResultados:")
+print("Soma de todos os elementos:", soma)
+print("Soma da diagonal principal:", soma_diagonal)
+print("Maior elemento:", maior)
+
+
+#Na diagonal principal, linha e coluna possuem o mesmo índice. Por isso usamos matriz[i][i].
+#O range(3) faz i assumir 0, 1 e 2, selecionando [0][0], [1][1] e [2][2], e o sum() soma esses três valores.
+#Como a matriz em Python é uma lista de listas, for linha in matriz percorre cada lista interna, ou seja, cada linha da matriz.
+#A variável linha recebe uma linha por vez e print(linha) imprime essa linha. O \n do primeiro print serve apenas para pular uma linha e organizar a saída.
+#Não está pegando cada número e sim cada linha.
+
+
+# Atividade 3 - Dicionário
+
+livro = {}
+
+# 1 e 2 - Ler os dados e armazenar no dicionário
+livro["titulo"] = input("Digite o título do livro: ")
+livro["autor"] = input("Digite o autor: ")
+livro["ano"] = int(input("Digite o ano: "))
+livro["preco"] = float(input("Digite o preço: "))
+
+# 3 - Exibir os dados
+print("\nDados do livro:")
+
+for chave, valor in livro.items():
+    print(f"{chave}: {valor}")
+
+# 4 - Alterar o preço
+livro["preco"] = float(input("\nDigite o novo preço: "))
+
+# 5 - Adicionar a categoria
+livro["categoria"] = input("Digite a categoria: ")
+
+# Exibir os dados atualizados
+print("\nDados atualizados:")
+
+for chave, valor in livro.items():
+    print(f"{chave}: {valor}")
+
+ #Criei inicialmente um dicionário vazio chamado livro. Depois, recebi os dados pelo input() e armazenei cada informação utilizando uma chave correspondente, 
+ #como titulo, autor, ano e preco. Para exibir os dados, utilizei items() para percorrer as chaves e os valores do dicionário. 
+ #Depois alterei o valor associado à chave preco e adicionei uma nova chave chamada categoria.
+ #Por fim, percorri novamente o dicionário para mostrar os dados atualizados.
