@@ -1,0 +1,292 @@
+#Apostila — Estrutura de Dados com Python
+#Dataclasses
+
+from dataclasses import dataclass
+# A anotação @dataclass facilita a criação de classes
+# utilizadas principalmente para representar dados estruturados.
+@dataclass
+class Aluno:
+    nome: str
+    matricula: int
+    nota1: float
+    nota2: float
+
+    def media(self) -> float:
+        return (self.nota1 + self.nota2) / 2
+
+aluno = Aluno(
+    "Maria",
+    12345,
+    8.0,
+    9.0
+)
+
+print("Nome:", aluno.nome)
+print("Matrícula:", aluno.matricula)
+print("Nota 1:", aluno.nota1)
+print("Nota 2:", aluno.nota2)
+print(f"Média: {aluno.media():.2f}")
+--------------------------------------------------------------------------------------------------------------------------------------
+#Eu mantive a dataclass Aluno, mas em vez de criar o objeto com valores fixos, usei input() para receber os dados do usuário.
+#Como matrícula é inteira, converti com int(), e como as notas podem ter casas decimais, converti com float().
+#Depois usei essas variáveis para criar o objeto Aluno e chamei o método media().
+
+from dataclasses import dataclass
+
+@dataclass
+class Aluno:
+    nome: str
+    matricula: int
+    nota1: float
+    nota2: float
+
+    def media(self) -> float:
+        return (self.nota1 + self.nota2) / 2
+
+nome = input("Nome: ")
+matricula = int(input("Matrícula: "))
+nota1 = float(input("Nota 1: "))
+nota2 = float(input("Nota 2: "))
+
+aluno = Aluno(
+    nome=nome,
+    matricula=matricula,
+    nota1=nota1,
+    nota2=nota2
+)
+----------------------------------------------------------------------------------------------------------------------------------------------------
+#O usuário cadastra exatamente cinco produtos e depois o programa segue uma sequência fixa: listar, calcular total, buscar e mostrar o mais caro.
+#Exemplo sequencial com cinco produtos, método valor_estoque() e max(..., key=lambda...);
+from dataclasses import dataclass
+
+# Representa a entidade Produto e seus atributos.
+@dataclass
+class Produto:
+    codigo: int
+    nome: str
+    preco: float
+    quantidade: int
+
+# Calcula o valor total deste produto existente no estoque:
+    # preço unitário multiplicado pela quantidade.
+    def valor_estoque(self) -> float:
+        return self.preco * self.quantidade
+
+# Lista responsável por armazenar os objetos Produto cadastrados.
+produtos = []
+
+# Cadastro dos cinco produtos
+for i in range(5):
+
+    print(f"\nProduto {i + 1}")
+
+    codigo = int(input("Código: "))
+    nome = input("Nome: ")
+    preco = float(input("Preço: "))
+    quantidade = int(input("Quantidade: "))
+
+
+    # Cria um novo objeto Produto com os dados informados.
+    produto = Produto(
+        codigo=codigo,
+        nome=nome,
+        preco=preco,
+        quantidade=quantidade
+    )
+
+    produtos.append(produto)
+
+# Lista os produtos
+print("\n===== ESTOQUE =====")
+
+# Variável acumuladora utilizada para somar
+# o valor de todos os produtos existentes no estoque.
+valor_total = 0.0
+
+# Percorre todos os objetos Produto armazenados na lista.
+for produto in produtos:
+
+# Calcula o valor em estoque do produto atual
+# utilizando o método definido na classe.
+    valor = produto.valor_estoque()
+
+    print(f"\nCódigo: {produto.codigo}")
+    print(f"Produto: {produto.nome}")
+    print(f"Preço: R$ {produto.preco:.2f}")
+    print(f"Quantidade: {produto.quantidade}")
+    print(f"Valor em estoque: R$ {valor:.2f}")
+
+ # Acumula o valor deste produto no valor total do estoque.
+    valor_total += valor
+
+# Exibe o valor total
+print(
+    f"\nValor total do estoque: R$ {valor_total:.2f}"
+)
+
+# Busca um produto pelo código
+codigo_busca = int(
+    input("\nDigite o código do produto que deseja buscar: ")
+)
+# Inicialmente, nenhum produto foi encontrado.
+produto_encontrado = None
+
+# Percorre a lista comparando o código de cada produto
+# com o código informado pelo usuário.
+for produto in produtos:
+
+    if produto.codigo == codigo_busca:
+        produto_encontrado = produto
+
+if produto_encontrado is not None:
+
+    print("\nProduto encontrado:")
+    print(produto_encontrado.nome)
+    print(f"Preço: R$ {produto_encontrado.preco:.2f}")
+
+else:
+
+    print("\nProduto não encontrado.")
+
+# max() procura o maior elemento.
+# O parâmetro key informa que a comparação deve ser feita
+# utilizando o atributo preco de cada objeto Produto.
+# Identifica o produto mais caro
+produto_mais_caro = max(
+    produtos,
+    key=lambda produto: produto.preco
+)
+
+print("\nProduto mais caro:")
+print(produto_mais_caro.nome)
+print(f"Preço: R$ {produto_mais_caro.preco:.2f}")
+-----------------------------------------------------------------------------------------------------------------------------------------
+#Sistema com Menu, que executa até o usuário escolher sair
+from dataclasses import dataclass
+
+# Cria a estrutura Produto
+@dataclass
+class Produto:
+    codigo: int
+    nome: str
+    preco: float
+    quantidade: int
+
+# Lista que armazenará os produtos cadastrados
+produtos = []
+
+# Mantém o sistema funcionando até o usuário escolher sair
+while True:
+
+    print("\n===== SISTEMA DE ESTOQUE =====")
+    print("1 - Cadastrar produto")
+    print("2 - Listar produtos")
+    print("3 - Buscar produto")
+    print("4 - Valor total do estoque")
+    print("5 - Produto mais caro")
+    print("0 - Sair")
+
+    opcao = int(input("\nEscolha: "))
+
+    # 1 - Cadastrar produto
+    if opcao == 1:
+
+        print("\n--- CADASTRO DE PRODUTO ---")
+
+        codigo = int(input("Código: "))
+        nome = input("Nome: ")
+        preco = float(input("Preço: "))
+        quantidade = int(input("Quantidade: "))
+
+        # Cria um objeto Produto
+        produto = Produto(codigo, nome, preco, quantidade)
+
+        # Adiciona o produto na lista
+        produtos.append(produto)
+
+        print("Produto cadastrado com sucesso!")
+
+    # 2 - Listar produtos
+    elif opcao == 2:
+
+        print("\n--- PRODUTOS CADASTRADOS ---")
+
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado.")
+
+        else:
+            for produto in produtos:
+                print(
+                    f"Código: {produto.codigo} | "
+                    f"Nome: {produto.nome} | "
+                    f"Preço: R$ {produto.preco:.2f} | "
+                    f"Quantidade: {produto.quantidade}"
+                )
+
+    # 3 - Buscar produto pelo código
+    elif opcao == 3:
+
+        print("\n--- BUSCAR PRODUTO ---")
+        codigo_busca = int(input("Digite o código do produto: "))
+        produto_encontrado = None
+        for produto in produtos:
+
+            if produto.codigo == codigo_busca:
+                produto_encontrado = produto
+
+        if produto_encontrado is not None:
+            print("Produto encontrado:")
+            print("Código:", produto_encontrado.codigo)
+            print("Nome:", produto_encontrado.nome)
+            print(f"Preço: R$ {produto_encontrado.preco:.2f}")
+            print("Quantidade:", produto_encontrado.quantidade)
+
+        else:
+            print("Produto não encontrado.")
+
+    # 4 - Calcular o valor total do estoque
+    elif opcao == 4:
+
+        print("\n--- VALOR TOTAL DO ESTOQUE ---")
+        valor_total = 0
+
+        for produto in produtos:
+
+            valor_produto = produto.preco * produto.quantidade
+            valor_total = valor_total + valor_produto
+
+        print(f"Valor total do estoque: R$ {valor_total:.2f}")
+
+    # 5 - Produto com maior preço
+    elif opcao == 5:
+
+        print("\n--- PRODUTO MAIS CARO ---")
+
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado.")
+
+        else:
+
+            produto_mais_caro = produtos[0]
+            for produto in produtos:
+
+                if produto.preco > produto_mais_caro.preco:
+                    produto_mais_caro = produto
+
+            print("Código:", produto_mais_caro.codigo)
+            print("Nome:", produto_mais_caro.nome)
+            print(f"Preço: R$ {produto_mais_caro.preco:.2f}")
+
+    # 0 - Encerrar o sistema
+    elif opcao == 0:
+
+        print("\nSistema encerrado.")
+        break
+
+    # Caso seja digitada uma opção inexistente
+    else:
+        print("\nOpção inválida.")
+#O menu funciona dentro de um while True e cada opção é tratada com if e elif. O cadastro cria um objeto Produto e adiciona à lista com append().
+#Para listar, buscar, calcular o estoque e encontrar o produto mais caro, percorro a lista com for.
+#O valor total é calculado multiplicando preço pela quantidade de cada produto e acumulando os resultados.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
