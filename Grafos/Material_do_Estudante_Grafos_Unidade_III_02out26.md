@@ -64,13 +64,19 @@ Considere:
 > **Atenção:** a aresta `(4,4)` é um laço. No cálculo do grau, um laço é
 > contado duas vezes.
 
-### Plataformas
+Respostas
 
--   papel e lápis;
--   Graph Online;
--   diagrams.net;
--   Graphviz;
--   Google Colab com Python e NetworkX.
+1. <img width="450" height="405" alt="Captura de tela 2026-10-22 155431" src="https://github.com/user-attachments/assets/3a474f0a-6dda-470e-9123-3bc1c44ca43f" /> 
+2. Cinco vértices
+3. Seis arestas
+4. Ordem |V| = 5
+5. Tamanho |E| = 6
+6. Sim, vértice 4
+7. Grau do vertice 1 = 3
+   Grau do vertice 2 = 2
+   Grau do vertice 3 = 2
+   Grau do vertice 4 = 4
+   Grau do vertice 5 = 1
 
 ------------------------------------------------------------------------
 
@@ -86,23 +92,20 @@ Utilize o grafo construído na Atividade 1.
     vizinhos.
 4.  Escolha dois vértices não adjacentes e justifique sua resposta.
 
+Respostas
 ### Registro
 
-  Vértice   Vértices adjacentes   Arestas incidentes
-  --------- --------------------- --------------------
-  1                               
-  2                               
-  3                               
-  4                               
-  5                               
-
-### Plataformas
-
--   papel;
--   Graph Online;
--   diagrams.net;
--   quadro colaborativo indicado pela professora.
-
+1.
+2.    Vértice   Vértices adjacentes   Arestas incidentes
+   --------- --------------------- -------------------------
+          1         2, 4 e 5              (1,2), (1,4), (1,5)        
+          2         1 e 3                 (1,2), (2,3)   
+          3         2 e 4                 (2,3),(3,4)   
+          4         1, 3, e 4             (1,4), (3,4), (4,4)         
+          5         1                     (1,5) 
+3. Os vértices 1 e 2 são adjacentes porque existe uma aresta (1,2) que os conecta diretamente. Por isso, são considerados vizinhos.
+4. Os vértices 2 e 5 não são adjacentes porque não existe uma aresta que os conecte diretamente no grafo.
+   
 ------------------------------------------------------------------------
 
 ## 5. Atividade 3 - Modelagem de uma rede de amizades
@@ -123,7 +126,17 @@ Crie uma pequena rede de amizades entre essas pessoas.
 4.  Informe se o grafo deve ser dirigido ou não dirigido.
 5.  Justifique a escolha.
 6.  Identifique quem possui maior grau no grafo criado.
+   
+Respostas
 
+1. V= João, Carolina, Maria e Marco
+2. E= (João, Carolina), (Carolina, Maria), (Maria, Marco) e (Marco, João)
+3. <img width="486" height="389" alt="Captura de tela 2026-10-22 172506" src="https://github.com/user-attachments/assets/74668509-69ab-4c0d-895d-4e2ecdeee5b3" />
+4. Não dirigido
+5. A amizade é recíproca. As arestas não precisam de direção.
+6. Todos ficam com grau 2
+**Vértices: representam as quatro pessoas da rede de amizades.
+**Arestas: representam as relações de amizade entre essas pessoas.
 ### Questão para reflexão
 
 **O que os vértices e as arestas representam nesse problema?**
@@ -150,19 +163,19 @@ mão única.
 1.  Represente cada cruzamento ou ponto relevante por um vértice.
 2.  Represente cada rua por uma aresta dirigida.
 3.  Utilize setas para indicar o sentido permitido.
-4.  Defina os conjuntos `V` e `E`.
-5.  Escolha um vértice e determine:
-    -   seu grau de entrada;
-    -   seu grau de saída.
-6.  Explique por que um grafo não dirigido não representa adequadamente
-    essa situação.
+   <img width="532" height="535" alt="Captura de tela 2026-10-22 175232" src="https://github.com/user-attachments/assets/fe40082e-c1e9-44b5-8f85-0bc2b1b27929" />
 
-### Plataformas
+4. Defina os conjuntos `V` e `E`.
+   Conjunto de Vértices V={1,2,3,4,5,6}
+   Conjunto de Arestas E={(1,2),(2,4),(4,3),(3,1),(3,5),(5,6),(6,4)} 
+   
+5. Escolha um vértice e determine: Vértice 4
+    -   seu grau de entrada; 2 recebe as arestas (2,4) e (6,4)
+    -   seu grau de saída. a aresta (4,3) parte desse vértice. 
+    
+6. Explique por que um grafo não dirigido não representa adequadamenteessa situação.
+    Um grafo não dirigido não representa adequadamente as ruas de mão única porque não indica o sentido permitido para o trânsito. Como os             veículos só podem circular em uma direção, é necessário utilizar um grafo dirigido, com setas indicando o sentido de cada rua. 
 
--   diagrams.net;
--   Graph Online;
--   Graphviz;
--   Google Colab com NetworkX.
 
 ------------------------------------------------------------------------
 
